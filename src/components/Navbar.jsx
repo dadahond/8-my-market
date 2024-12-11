@@ -4,7 +4,8 @@ import { useContext } from "react";
 import { GlobalContext } from "../context/globalContext";
 
 function Navbar() {
-  const { color, selectedProducts } = useContext(GlobalContext);
+  const { color, selectedProducts, totalAmount, totalPrice } =
+    useContext(GlobalContext);
   return (
     <header className="bg-base-200 mb-5" style={{ backgroundColor: color }}>
       <div className=" align-elements navbar">
@@ -57,7 +58,7 @@ function Navbar() {
                     />
                   </svg>
                   <span className="badge badge-sm indicator-item">
-                    {selectedProducts.length}
+                    {totalAmount}
                   </span>
                 </div>
               </div>
@@ -66,12 +67,12 @@ function Navbar() {
                 className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow"
               >
                 <div className="card-body">
-                  <span className="text-lg font-bold">8 Items</span>
-                  <span className="text-info">Subtotal: $999</span>
+                  <span className="text-lg font-bold">{totalAmount} Items</span>
+                  <span className="text-info">Subtotal: {totalPrice}</span>
                   <div className="card-actions">
-                    <button className="btn btn-primary btn-block">
+                    <Link to="/cart" className="btn btn-primary btn-block">
                       View cart
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

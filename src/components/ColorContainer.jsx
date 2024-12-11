@@ -1,9 +1,8 @@
 const colors = ["#ECEBDE", "#D3F1DF", "#EBEAFF", "#FEF3E2"];
 
-import { useContext } from "react";
-import { GlobalContext } from "../context/globalContext";
+import { useGlobalContext } from "../hooks/useGlobalContext";
 function ColorContainer() {
-  const { dispatch } = useContext(GlobalContext);
+  const { dispatch } = useGlobalContext();
   return (
     <div className="align-elements mb-10 flex justify-end">
       <ul className="flex gap-3">
