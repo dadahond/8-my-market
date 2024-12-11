@@ -52,7 +52,7 @@ function TableRaw({ id, price, amount, title, brand, thumbnail }) {
       <th>
         <button
           onClick={() => removeProduct(id)}
-          className="btn btn-neutral  btn-xs"
+          className="btn btn-outline btn-error btn-sm"
         >
           Delete
         </button>

@@ -12,7 +12,7 @@ function Cart() {
         <h1 className="text-center text-3xl font-bold text-red-500">
           Your cart is empty!{" "}
         </h1>
-        <Link to="/" className="btn btn-secondary">
+        <Link to="/" className="btn btn-outline btn-secondary">
           Continue shopping
         </Link>
       </div>

@@ -10,8 +10,11 @@ function Navbar() {
     <header className="bg-base-200 mb-5" style={{ backgroundColor: color }}>
       <div className=" align-elements navbar">
         <div className="navbar-start">
-          <Link to="/" className="btn btn-neutral text-xl hidden md:flex">
-            myStore
+          <Link
+            to="/"
+            className="btn btn-outline btn-primary text-xl hidden md:flex"
+          >
+            itUzum
           </Link>
           <div className="dropdown md:hidden ">
             <div
