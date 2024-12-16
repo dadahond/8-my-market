@@ -16,7 +16,7 @@ function SingleProduct() {
         <p className="text-lg">{product.description}</p>
         <span className="text-xl">Brand: {product.brand}</span>
         <p className="text-xl">Category: {product.category}</p>
-        <p className="text-xl">Price: {product.price}</p>
+        <p className="text-xl">Price: ${product.price}</p>
       </div>
       <img src={product.thumbnail} alt="" width={300} height={300} />
     </div>

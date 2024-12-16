@@ -1,6 +1,10 @@
 import { createContext, useEffect, useReducer } from "react";
 import { formatPrice } from "../utils";
 
+// firebase
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig";
+
 // const dataFromLocalStorage = () => {
 //   return (
 //     JSON.parse(localStorage.getItem("products")) || {
@@ -14,6 +18,10 @@ export const GlobalContext = createContext();
 const changeState = (state, action) => {
   const { type, payload } = action;
   switch (type) {
+    case "LOGIN":
+      return { ...state, user: payload };
+    case "AUTH_READY":
+      return { ...state, authReady: true };
     case "ADD_PRODUCT":
       return {
         ...state,
@@ -27,14 +35,19 @@ const changeState = (state, action) => {
       return { ...state, totalAmount: payload[1], totalPrice: payload[0] };
     case "CHANGE_COLOR":
       return { ...state, color: payload };
+    default: {
+      return state;
+    }
   }
 };
 export function GlobalContextProvider({ children }) {
   const [state, dispatch] = useReducer(changeState, {
+    user: null,
     color: "",
     selectedProducts: [],
     totalPrice: 0,
     totalAmount: 0,
+    authReady: false,
   });
 
   // calculate product
@@ -95,6 +108,13 @@ export function GlobalContextProvider({ children }) {
   // useEffect(() => {
   //   localStorage.setItem("products", JSON.stringify(state));
   // }, [state]);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      dispatch({ type: "LOGIN", payload: user });
+      dispatch({ type: "AUTH_READY" });
+    });
+  }, []);
 
   useEffect(() => {
     calculate();
